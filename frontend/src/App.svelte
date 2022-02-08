@@ -1,7 +1,9 @@
 <script>
 // imports css files
 import "./tailwind.css"
+// imports components
+import Nav from './components/Nav.svelte';
 </script>
 <main>
-    <h1>Initail Commit of making JSON Hero</h1>
+    <Nav/>
 </main>
