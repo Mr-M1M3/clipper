@@ -1,6 +1,6 @@
 <script>
 // imports components
-import Extended from './Extended_Nav.svelte';
+import Extended from './modules/Extended_Nav.svelte';
     // variables
     let togglerState = 'inactive';
 

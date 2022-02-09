@@ -17,8 +17,8 @@
 
 <nav class="w-screen bg-white absolute bottom-0 left-0 {state}">
   <ul class="px-2">
-    <li class="nav-link"><button class="px-2 py-4 block w-full bg-scheme-red my-2 text-white txt-lg rounded-lg font-bold">Signup</button></li>
-    <li class="nav-link"><button class="px-2 py-4 block w-full bg-scheme-red my-2 text-white txt-lg rounded-lg font-bold">Login</button></li>
+    <li class="nav-link"><button class="extended-nav-btn">Signup</button></li>
+    <li class="nav-link"><button class="extended-nav-btn">Login</button></li>
   </ul>
 </nav>
 

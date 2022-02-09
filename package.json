@@ -27,7 +27,7 @@
     "tailwindcss": "^3.0.19"
   },
   "scripts": {
-    "start-server": "nodemon server",
+    "start": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css && rollup -c && nodemon server",
     "build": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css && rollup -c",
     "start-frontend": "sirv public --no-clear",
     "svelte-dev": "rollup -c -w",
