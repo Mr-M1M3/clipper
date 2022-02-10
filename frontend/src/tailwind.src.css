@@ -6,4 +6,8 @@
   .extended-nav-btn {
     @apply px-2 py-4 block w-full bg-scheme-red my-2 text-white text-lg rounded-lg font-bold;
   }
+  .text-stroke{
+    text-stroke: 1px black;
+      -webkit-text-stroke: 1px rgba(0, 0, 0, 0.7);
+  }
 }

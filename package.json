@@ -1,5 +1,5 @@
 {
-  "name": "user-manager",
+  "name": "json-hero",
   "version": "1.0.0",
   "main": "server.js",
   "license": "MIT",
@@ -27,10 +27,9 @@
     "tailwindcss": "^3.0.19"
   },
   "scripts": {
-    "start": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css && rollup -c && nodemon server",
-    "build": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css && rollup -c",
-    "start-frontend": "sirv public --no-clear",
     "svelte-dev": "rollup -c -w",
-    "tailwind-dev": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css -w"
+    "tailwind-dev": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css -w",
+    "build": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css && rollup -c",
+    "start-frontend": "sirv public --no-clear"
   }
 }

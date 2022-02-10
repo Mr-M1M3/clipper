@@ -9,6 +9,10 @@ module.exports = {
         'scheme-white': '#F0F0F0',
         'scheme-red': '#FF6464',
         'scheme-green': '#91C483'
+      },
+      fontFamily:{
+        'andika': ['Andika', 'sans-serif'],
+        'paytone': ['Paytone One', 'sans-serif']
       }
     },
   },
