@@ -13,7 +13,7 @@
 </script>
 
 <nav
-  class="bg-scheme-red text-scheme-white flex justify-between items-center px-2 py-3 fixed top-0 left-0 w-full z-10"
+  class="bg-scheme-red-transparent text-white flex justify-between items-center px-2 py-3 fixed top-0 left-0 w-full z-10"
 >
   <div class="logo w-full font-bold">
     <h1 class="title text-xl">{title}</h1>

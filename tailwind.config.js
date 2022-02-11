@@ -5,10 +5,9 @@ module.exports = {
       colors:{
         'scheme-dark': '#21325E',
         'scheme-light-dark': '#3E497A',
-        'scheme-primary': '#F1D00A',
         'scheme-white': '#F0F0F0',
         'scheme-red': '#FF6464',
-        'scheme-green': '#91C483'
+        'scheme-red-transparent': 'rgba(255, 100, 100, 0.8)'
       },
       fontFamily:{
         'andika': ['Andika', 'sans-serif'],

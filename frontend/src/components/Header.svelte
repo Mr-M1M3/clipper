@@ -31,7 +31,7 @@
   header {
     top: 60px;
     height: calc(100vh - 60px);
-    background-image: url("/images/wave-bg.svg");
+    background-image: url("/images/wave.svg");
     background-repeat: no-repeat;
     background-size: cover;
 
