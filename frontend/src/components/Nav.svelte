@@ -4,11 +4,11 @@
   //   imports props
   export let title;
   // variables
-  let togglerState = "inactive";
+  let opened = false;
 
   // nav toggler
-  function toggle_nave() {
-    togglerState = togglerState == "inactive" ? "active" : "inactive";
+  function toggle_nav() {
+    opened = !opened;
   }
 </script>
 
@@ -24,15 +24,12 @@
     <li class="nav-links"><button>Why?</button></li>
   </ul>
   <div class="nav-toggler">
-    <span class="toggler {togglerState}" on:click={toggle_nave} />
+    <span class="toggler {opened ? 'active' : 'inactive'}" on:click={toggle_nav} />
   </div>
 </nav>
-<Extended
-  state={togglerState}
-  on:close={() => {
-    togglerState = "inactive";
-  }}
-/>
+{#if opened}
+  <Extended/>
+{/if}
 
 <style lang="scss">
   nav {

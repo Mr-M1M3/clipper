@@ -600,18 +600,13 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(33 50 94 / var(--tw-bg-opacity));
 }
 
-.bg-scheme-red {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 100 100 / var(--tw-bg-opacity));
+.bg-scheme-red-transparent {
+  background-color: rgba(255, 100, 100, 0.8);
 }
 
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-scheme-red-transparent {
-  background-color: rgba(255, 100, 100, 0.8);
 }
 
 .px-3 {
@@ -673,11 +668,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-scheme-dark {
   --tw-text-opacity: 1;
   color: rgb(33 50 94 / var(--tw-text-opacity));
-}
-
-.text-scheme-white {
-  --tw-text-opacity: 1;
-  color: rgb(240 240 240 / var(--tw-text-opacity));
 }
 
 .text-white {
