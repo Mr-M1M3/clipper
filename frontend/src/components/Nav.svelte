@@ -13,17 +13,21 @@
 </script>
 
 <nav
-  class="bg-scheme-red-transparent text-white flex justify-between items-center px-2 py-3 fixed top-0 left-0 w-full z-10"
+  class="bg-scheme-red-transparent text-white flex justify-between md:justify-around items-center px-2 py-3 fixed top-0 left-0 w-full z-10"
 >
-  <div class="logo w-full font-bold">
-    <h1 class="title text-xl">{title}</h1>
+  <div class="logo font-bold font-andika">
+    <h1 class="title text-2xl">{title}</h1>
   </div>
-  <ul class="nav-lists hidden">
-    <li class="nav-links"><button>Home</button></li>
-    <li class="nav-links"><button>Who?</button></li>
-    <li class="nav-links"><button>Why?</button></li>
+  <ul class="nav-lists h-8 hidden md:flex justify-between items-center text-lg bg-rd-700">
+    <li class="nav-links mx-4"><button>Home</button></li>
+    <li class="nav-links mx-4"><button>Who?</button></li>
+    <li class="nav-links mx-4"><button>Why?</button></li>
   </ul>
-  <div class="nav-toggler">
+  <div class="auth-btn hidden md:flex bg-blak">
+    <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md signup">Sign Up</button>
+    <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md login">Login</button>
+  </div>
+  <div class="nav-toggler md:hidden">
     <span class="toggler {opened ? 'active' : 'inactive'}" on:click={toggle_nav} />
   </div>
 </nav>
@@ -41,8 +45,7 @@
     }
     .nav-toggler {
       .toggler {
-        // the togler
-        height: auto;
+        // the toggler
         height: 28px;
         width: 30px;
         display: inline-block;

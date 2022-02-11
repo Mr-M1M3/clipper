@@ -2,7 +2,7 @@
   //doesn't need any script
 </script>
 
-<nav class="w-screen bg-white fixed bottom-0 left-0 z-10">
+<nav class="w-screen bg-white fixed bottom-0 left-0 z-10 md:hidden">
   <ul class="px-2">
     <li class="nav-link"><button class="extended-nav-btn">Signup</button></li>
     <li class="nav-link"><button class="extended-nav-btn">Login</button></li>
