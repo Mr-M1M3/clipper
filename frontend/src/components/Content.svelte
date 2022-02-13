@@ -1,4 +1,6 @@
-<script></script>
+<script>
+  // no script needed
+</script>
 
 <section class="content px-5 my-4 max-w-5xl m-auto">
   <h1 class="text-5xl text-center font-paytone">Easy To Use</h1>

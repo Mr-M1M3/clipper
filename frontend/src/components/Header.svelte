@@ -1,6 +1,5 @@
 <script>
-  // imports props
-  //   export let header;
+  // no script needed
 </script>
 
 <header class="max-w-screen h-screen relative font-paytone flex items-center overflow-hidden">
@@ -23,7 +22,7 @@
         >
     </div>
     <div class="image-container flex-grow w-full hidden md:block">
-        <img src="./images/idea.svg" alt="" class="max-w-full"/>
+        <img src="/images/idea.svg" alt="" class="max-w-full"/>
     </div>
 </header>
 
