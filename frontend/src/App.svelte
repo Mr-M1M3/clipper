@@ -10,6 +10,7 @@ import Header from './components/Header.svelte';
 import Content from './components/Content.svelte';
 import Features from './components/Features.svelte';
 import WannaTry from './components/WannaTry.svelte';
+import Footer from './components/Footer.svelte';
 </script>
 <main class="min-h-screen">
     <Nav {title}/>
@@ -20,4 +21,6 @@ import WannaTry from './components/WannaTry.svelte';
     <Features/>
     <br>
     <WannaTry/>
+    <br>
+    <Footer/>
 </main>

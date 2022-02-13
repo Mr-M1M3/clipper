@@ -18,11 +18,6 @@
   <div class="logo font-bold font-andika">
     <h1 class="title text-2xl">{title}</h1>
   </div>
-  <ul class="nav-lists h-8 hidden md:flex justify-between items-center text-lg bg-rd-700">
-    <li class="nav-links mx-4"><button>Home</button></li>
-    <li class="nav-links mx-4"><button>Who?</button></li>
-    <li class="nav-links mx-4"><button>Why?</button></li>
-  </ul>
   <div class="auth-btn hidden md:flex bg-blak">
     <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md signup">Sign Up</button>
     <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md login">Login</button>
