@@ -1,8 +1,11 @@
 <script>
+  // imports modules
+  import {authStateStore} from "./modules/stores";
   // imports components
   import Extended from "./modules/Extended_Nav.svelte";
   //   imports props
   export let title;
+  export let position;
   // variables
   let opened = false;
 
@@ -13,13 +16,13 @@
 </script>
 
 <nav
-  class="bg-scheme-red-transparent text-white flex justify-between md:justify-around items-center px-2 py-3 fixed top-0 left-0 w-full z-10"
+  class="bg-scheme-red text-white flex justify-between md:justify-around items-center px-2 py-3 {position} top-0 left-0 w-full z-10"
 >
   <div class="logo font-bold font-andika">
     <h1 class="title text-2xl">{title}</h1>
   </div>
   <div class="auth-btn hidden md:flex bg-blak">
-    <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md signup">Sign Up</button>
+    <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md signup" on:click="{() => {authStateStore.set('signup')}}">Sign Up</button>
     <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md login">Login</button>
   </div>
   <div class="nav-toggler md:hidden">
@@ -32,7 +35,7 @@
 
 <style lang="scss">
   nav {
-      height: 60px;
+      height: 64px;
     div.logo {
       h1.title {
         text-shadow: 0 0 1px #21325e;

@@ -12,7 +12,7 @@ const controller = require('../controllers/user-controller');
 const ROUTER = express.Router();
 
 
-ROUTER.post('/register', controller.create);
+ROUTER.post('/register' ,controller.create);
 ROUTER.post('/login', controller.guard, controller.authenticate);
 ROUTER.put('/update', controller.update);
 ROUTER.delete('/delete', controller.delete);
