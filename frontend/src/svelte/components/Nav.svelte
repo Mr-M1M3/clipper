@@ -22,7 +22,7 @@
     <h1 class="title text-2xl">{title}</h1>
   </div>
   <div class="auth-btn hidden md:flex bg-blak">
-    <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md signup" on:click="{() => {authStateStore.set('signup')}}">Sign Up</button>
+    <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md signup" on:click="{() => {authStateStore.update((v) => v == 'signup' ? false : 'signup')}}">Sign Up</button>
     <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md login">Login</button>
   </div>
   <div class="nav-toggler md:hidden">
