@@ -11,6 +11,7 @@ import Features from './components/Features.svelte';
 import WannaTry from './components/WannaTry.svelte';
 import Footer from './components/Footer.svelte';
 import Signup from './components/Signup.svelte';
+import Login from './components/Login.svelte';
 
 // imports module
 import {authStateStore}  from "./components/modules/stores";
@@ -23,9 +24,11 @@ let authState = false;
 authStateStore.subscribe((v) => {authState = v})
 </script>
 <main class="min-h-screen">
-    <Nav {title} position="{authState == 'signup' ? 'static' : 'fixed'}"/>
+    <Nav {title} position="{authState == 'signup' || authState == 'login' ? 'static' : 'fixed'}"/>
     {#if authState == 'signup'}
     <Signup/>
+    {:else if authState == 'login'}
+    <Login/>
     {:else}
     <Header/>
     <br>

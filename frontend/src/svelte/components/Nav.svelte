@@ -23,7 +23,7 @@
   </div>
   <div class="auth-btn hidden md:flex bg-blak">
     <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md signup" on:click="{() => {authStateStore.update((v) => v == 'signup' ? false : 'signup')}}">Sign Up</button>
-    <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md login">Login</button>
+    <button class="mx-3 bg-scheme-dark font-bold px-4 py-2 rounded-md login" on:click="{() => {authStateStore.update((v) => v == 'login' ? false : 'login')}}">Login</button>
   </div>
   <div class="nav-toggler md:hidden">
     <span class="toggler {opened ? 'active' : 'inactive'}" on:click={toggle_nav} />

@@ -32,6 +32,7 @@
       }
     });
     }else{
+      authStateStore.set('login');
       alert('Record added');
     }
   }

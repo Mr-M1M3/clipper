@@ -80,10 +80,10 @@ controller.authenticate = (req, res, next) => {
         } else {
             const TOKEN = salt(24); //generates random token
             const ENCRYPTED_TOKEN = encrypt(TOKEN); // encrypts that token
-            token_database.add({
+            token_database.add({// adds token to token database 
                 token: ENCRYPTED_TOKEN,
                 id: data[0]._id
-            }); // adds token to token database 
+            }); 
             // makes response ready
             const RESPONSE = {};
             RESPONSE.name = data[0].name;
@@ -100,6 +100,9 @@ controller.authenticate = (req, res, next) => {
 }
 
 controller.guard = (req, res, next) => {
+    if(req.body.email || req.body.password){ // if req body contains email or password
+        next();
+    }else{
     let token = req.cookies.session; // grabs token that came with the request
     token = encrypt(token);
     if (!token) { // if no tokens found
@@ -128,6 +131,7 @@ controller.guard = (req, res, next) => {
         }).catch(error => {
             next(error);
         })
+    }
     }
 }
 
