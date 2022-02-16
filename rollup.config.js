@@ -29,51 +29,99 @@ function serve() {
 	};
 }
 
-export default {
-	input: './frontend/src/main.js',
-	output: {
-		sourcemap: true,
-		format: 'iife',
-		name: 'app',
-		file: './frontend/public/build/bundle.js'
+export default [
+	{
+		input: './frontend/src/landingpage.js',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			name: 'app',
+			file: './frontend/public/build/landingpage.js'
+		},
+		plugins: [
+			svelte({
+				compilerOptions: {
+					// enable run-time checks when not in production
+					dev: !production
+				},
+				// preprocessor
+				preprocess: sveltePreprocess()
+			}),
+			// we'll extract any component CSS out into
+			// a separate file - better for performance
+			css({ output: 'landingpage.css' }),
+	
+			// If you have external dependencies installed from
+			// npm, you'll most likely need these plugins. In
+			// some cases you'll need additional configuration -
+			// consult the documentation for details:
+			// https://github.com/rollup/plugins/tree/master/packages/commonjs
+			resolve({
+				browser: true,
+				dedupe: ['svelte']
+			}),
+			commonjs(),
+	
+			// In dev mode, call `npm run start` once
+			// the bundle has been generated
+			!production && serve(),
+	
+			// Watch the `public` directory and refresh the
+			// browser on changes when not in production
+			!production && livereload('./frontend/public'),
+	
+			// If we're building for production (npm run build
+			// instead of npm run dev), minify
+			production && terser()
+		],
+		watch: {
+			clearScreen: false
+		}
 	},
-	plugins: [
-		svelte({
-			compilerOptions: {
-				// enable run-time checks when not in production
-				dev: !production
-			},
-			// preprocessor
-			preprocess: sveltePreprocess()
-		}),
-		// we'll extract any component CSS out into
-		// a separate file - better for performance
-		css({ output: 'bundle.css' }),
+	{
+		input: './frontend/src/profile.js',
+		output: {
+			sourcemap: true,
+			format: 'iife',
+			name: 'app',
+			file: './frontend/public/build/profile.js'
+		},
+		plugins: [
+			svelte({
+				compilerOptions: {
+					// enable run-time checks when not in production
+					dev: !production
+				},
+				// preprocessor
+				preprocess: sveltePreprocess()
+			}),
+			// we'll extract any component CSS out into
+			// a separate file - better for performance
+			css({ output: 'profile.css' }),
+	
+			// If you have external dependencies installed from
+			// npm, you'll most likely need these plugins. In
+			// some cases you'll need additional configuration -
+			// consult the documentation for details:
+			// https://github.com/rollup/plugins/tree/master/packages/commonjs
+			resolve({
+				browser: true,
+				dedupe: ['svelte']
+			}),
+			commonjs(),
 
-		// If you have external dependencies installed from
-		// npm, you'll most likely need these plugins. In
-		// some cases you'll need additional configuration -
-		// consult the documentation for details:
-		// https://github.com/rollup/plugins/tree/master/packages/commonjs
-		resolve({
-			browser: true,
-			dedupe: ['svelte']
-		}),
-		commonjs(),
+			// no need to start server again as server is already running
 
-		// In dev mode, call `npm run start` once
-		// the bundle has been generated
-		!production && serve(),
-
-		// Watch the `public` directory and refresh the
-		// browser on changes when not in production
-		!production && livereload('./frontend/public'),
-
-		// If we're building for production (npm run build
-		// instead of npm run dev), minify
-		production && terser()
-	],
-	watch: {
-		clearScreen: false
+			// Watch the `public` directory and refresh the
+			// browser on changes when not in production
+			!production && livereload('./frontend/public'),
+	
+			// If we're building for production (npm run build
+			// instead of npm run dev), minify
+			production && terser()
+		],
+		watch: {
+			clearScreen: false
+		}
 	}
-};
+];

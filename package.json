@@ -27,6 +27,7 @@
     "tailwindcss": "^3.0.19"
   },
   "scripts": {
+    "start": "node server",
     "svelte-dev": "rollup -c -w",
     "tailwind-dev": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css -w",
     "build": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css && rollup -c",
