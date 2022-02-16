@@ -1,4 +1,4 @@
-import LandingPage from './LandingPage.svelte';
+import LandingPage from './svelte/LandingPage.svelte';
 
 const landing_page = new LandingPage({
 	target: document.body,

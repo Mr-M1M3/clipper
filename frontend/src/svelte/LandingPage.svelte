@@ -1,6 +1,6 @@
 <script>
 // imports css files
-import "./tailwind.css"
+import "../css/landingpage.css"
 // imports props
 export let title;
 // imports components

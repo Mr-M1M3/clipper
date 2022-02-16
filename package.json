@@ -13,6 +13,7 @@
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.1.3",
     "autoprefixer": "^10.3.7",
+    "concurrently": "^7.0.0",
     "node-sass": "^7.0.1",
     "nodemon": "^2.0.15",
     "postcss": "^8.3.11",
@@ -28,9 +29,8 @@
   },
   "scripts": {
     "start": "node server",
-    "svelte-dev": "rollup -c -w",
-    "tailwind-dev": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css -w",
-    "build": "tailwindcss -i ./frontend/src/tailwind.src.css -o ./frontend/src/tailwind.css && rollup -c",
-    "start-frontend": "sirv public --no-clear"
+    "svelte-dev": "tailwindcss -i ./frontend/src/css/landingpage.src.css -o ./frontend/src/css/landingpage.css && tailwindcss -i ./frontend/src/css/profile.src.css -o ./frontend/src/css/profile.css && rollup -c -w",
+    "tailwind-dev": "concurrently \"tailwindcss -i ./frontend/src/css/landingpage.src.css -o ./frontend/src/css/landingpage.css -w\" \"tailwindcss -i ./frontend/src/css/profile.src.css -o ./frontend/src/css/profile.css -w\"",
+    "build": "tailwindcss -i ./frontend/src/css/landingpage.src.css -o ./frontend/src/css/landingpage.css --minify && tailwindcss -i ./frontend/src/css/profile.src.css -o ./frontend/src/css/profile.css --minify && rollup -c"
   }
 }

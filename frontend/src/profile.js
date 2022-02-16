@@ -1,4 +1,4 @@
-import Profile from './Profile.svelte';
+import Profile from './svelte/Profile.svelte';
 
 const profile = new Profile({
 	target: document.body,
