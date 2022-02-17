@@ -6,8 +6,8 @@
 
 // require modules
 const express = require('express');
-const CONFIG = require('./config/config');
-const user = require('./routers/user');
+const CONFIG = require('./private/config/config');
+const user = require('./private/routers/user');
 const cookie_parser = require('cookie-parser');
 
 // handling exception that might happen
