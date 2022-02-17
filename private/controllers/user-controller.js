@@ -80,10 +80,10 @@ controller.authenticate = (req, res, next) => {
         } else {
             const TOKEN = salt(24); //generates random token
             const ENCRYPTED_TOKEN = encrypt(TOKEN); // encrypts that token
-            token_database.add({// adds token to token database 
+            token_database.add({ // adds token to token database 
                 token: ENCRYPTED_TOKEN,
                 id: data[0]._id
-            }); 
+            });
             // makes response ready
             const RESPONSE = {};
             RESPONSE.name = data[0].name;
@@ -100,38 +100,38 @@ controller.authenticate = (req, res, next) => {
 }
 
 controller.guard = (req, res, next) => {
-    if(req.body.email || req.body.password){ // if req body contains email or password
-        next();
-    }else{
-    let token = req.cookies.session; // grabs token that came with the request
-    token = encrypt(token);
-    if (!token) { // if no tokens found
+    if (req.body.email || req.body.password) { // if req body contains email or password
         next();
     } else {
+        let token = req.cookies.session; // grabs token that came with the request
+        token = encrypt(token);
+        if (!token) { // if no tokens found
+            next();
+        } else {
 
-        token_database.get({
-            token: token
-        }).then(data => {
-            if (data.length == 0) { // if request does have a token but invalid
-                next();
-            } else {
-                database.get({
-                    _id: data[0].id
-                }).then(data => { // if token  is valid
-                    // makes response ready
-                    const RESPONSE = {};
-                    RESPONSE.name = data[0].name;
-                    RESPONSE.email = data[0].email;
-                    // sends response
-                    res.send(RESPONSE);
-                }).catch(error => {
-                    next(error);
-                })
-            }
-        }).catch(error => {
-            next(error);
-        })
-    }
+            token_database.get({
+                token: token
+            }).then(data => {
+                if (data.length == 0) { // if request does have a token but invalid
+                    next();
+                } else {
+                    database.get({
+                        _id: data[0].id
+                    }).then(data => { // if token  is valid
+                        // makes response ready
+                        const RESPONSE = {};
+                        RESPONSE.name = data[0].name;
+                        RESPONSE.email = data[0].email;
+                        // sends response
+                        res.send(RESPONSE);
+                    }).catch(error => {
+                        next(error);
+                    })
+                }
+            }).catch(error => {
+                next(error);
+            })
+        }
     }
 }
 
@@ -146,18 +146,20 @@ controller.update = (req, res, next) => {
             res.status(401).send('auth failed');
         } else { // if any records found
             // extracting update from request body
-            const UPDATE = {}; 
+            const UPDATE = {};
             UPDATE.name = req.body.new_name ? req.body.new_name : data[0].name;
             UPDATE.email = req.body.new_email ? req.body.new_email : data[0].email;
-            if(req.body.new_password){ // if user want to update password
-                if(is_valid_password(req.body.new_password)){ // validates password
+            if (req.body.new_password) { // if user want to update password
+                if (is_valid_password(req.body.new_password)) { // validates password
                     UPDATE.password = encrypt(req.body.new_password); // if valid
-                }else{
+                } else {
                     res.status(400).send('invalid data'); // if invalid password
                     return; // stopping this middleware from executing anymore to prevent ERR_HTTP_HEADERS_SENT
                 }
             }
-            database.update({_id: data[0].id}, UPDATE).then(data => { // querying database to update data
+            database.update({
+                _id: data[0].id
+            }, UPDATE).then(data => { // querying database to update data
                 // taking an empty object and passes the data it should send as response to prevent accidentally leakage of sensitive data
                 const RESPONSE = {};
                 RESPONSE.name = data.name;
@@ -181,11 +183,19 @@ controller.delete = (req, res, next) => {
     CREDENTIALS.email = req.body.email;
     CREDENTIALS.password = encrypt(req.body.password);
     database.get(CREDENTIALS).then(data => {
-        if(data.length == 0){
+        if (data.length == 0) {
             res.status(401).send('auth failed');
-        }else{
-            database.delete({_id: data[0].id}).then(() => {
-                res.send('deleted');
+        } else {
+            database.delete({
+                _id: data[0].id
+            }).then(() => {
+                token_database.deleteMany({
+                    id: data[0].id
+                }).then(del_count => {
+                    res.send('deleted');
+                }).catch(error => {
+                    next(error);
+                });
             }).catch(error => {
                 next(error);
             });

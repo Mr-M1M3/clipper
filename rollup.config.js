@@ -79,12 +79,12 @@ export default [
 		}
 	},
 	{
-		input: './frontend/src/profile.js',
+		input: './frontend/src/dashboard.js',
 		output: {
 			sourcemap: true,
 			format: 'iife',
 			name: 'app',
-			file: './frontend/public/build/profile.js'
+			file: './frontend/public/build/dashboard.js'
 		},
 		plugins: [
 			svelte({
@@ -97,7 +97,7 @@ export default [
 			}),
 			// we'll extract any component CSS out into
 			// a separate file - better for performance
-			css({ output: 'profile.css' }),
+			css({ output: 'dashboard.css' }),
 	
 			// If you have external dependencies installed from
 			// npm, you'll most likely need these plugins. In
