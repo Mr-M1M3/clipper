@@ -25,8 +25,7 @@
         }
       });
       }else{
-        // authStateStore.set(false);
-        alert('Authenticated');
+        window.location.assign('/dashboard.html');
       }
     }
   </script>

@@ -15,13 +15,25 @@ import Login from './components/Login.svelte';
 
 // imports module
 import {authStateStore}  from "./components/modules/stores";
+import fetcher from './components/modules/fetcher';
+
+
+async function redirect(){ // if user is logged in, redirects
+        const RESPONSE = await fetcher('POST', '/user/login', {});
+        RESPONSE.json().then(data => {
+            window.location.assign('/dashboard.html');
+        }).catch(error => {
+        });
+    }
+
+redirect();
 
 // toggles signup-login-landing_page
 function toggleAuthState(new_state){
     authStateStore.update(state => new_state);
 }
 let authState = false;
-authStateStore.subscribe((v) => {authState = v})
+authStateStore.subscribe((v) => {authState = v});
 </script>
 <main class="min-h-screen">
     <Nav {title} position="{authState == 'signup' || authState == 'login' ? 'static' : 'fixed'}"/>

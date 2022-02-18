@@ -28,8 +28,8 @@
   },
   "scripts": {
     "start": "node server",
-    "svelte-dev": "tailwindcss -i ./frontend/src/css/landingpage.src.css -o ./frontend/src/css/landingpage.css && tailwindcss -i ./frontend/src/css/profile.src.css -o ./frontend/src/css/profile.css && rollup -c -w",
-    "tailwind-dev": "concurrently \"tailwindcss -i ./frontend/src/css/landingpage.src.css -o ./frontend/src/css/landingpage.css -w\" \"tailwindcss -i ./frontend/src/css/profile.src.css -o ./frontend/src/css/profile.css -w\"",
-    "build": "tailwindcss -i ./frontend/src/css/landingpage.src.css -o ./frontend/src/css/landingpage.css --minify && tailwindcss -i ./frontend/src/css/profile.src.css -o ./frontend/src/css/profile.css --minify && rollup -c"
+    "svelte-dev": "tailwindcss -i ./frontend/src/css/landingpage.src.css -o ./frontend/src/css/landingpage.css && tailwindcss -i ./frontend/src/css/dashboard.src.css -o ./frontend/src/css/dashboard.css && rollup -c -w",
+    "tailwind-dev": "concurrently \"tailwindcss -i ./frontend/src/css/landingpage.src.css -o ./frontend/src/css/landingpage.css -w\" \"tailwindcss -i ./frontend/src/css/dashboard.src.css -o ./frontend/src/css/dashboard.css -w\"",
+    "build": "tailwindcss -i ./frontend/src/css/landingpage.src.css -o ./frontend/src/css/landingpage.css --minify && tailwindcss -i ./frontend/src/css/dashboard.src.css -o ./frontend/src/css/dashboard.css --minify && rollup -c"
   }
 }

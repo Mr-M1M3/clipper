@@ -90,7 +90,9 @@ controller.authenticate = (req, res, next) => {
             RESPONSE.email = data[0].email;
 
             res.cookie('session', TOKEN, {
-                maxAge: CONFIG.SESSION_MAX_AGE
+                maxAge: CONFIG.SESSION_MAX_AGE,
+                httpOnly: true,
+                sameSite: 'strict'
             }); //sets session cookie
             res.send(RESPONSE); // sends response
         }

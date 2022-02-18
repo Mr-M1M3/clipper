@@ -6,7 +6,7 @@
 <nav class="w-full bg-white fixed bottom-0 left-0 z-10 md:hidden">
   <ul class="px-2">
     <li class="nav-link"><button class="extended-nav-btn" on:click="{() => {authStateStore.update((v) => v == 'signup' ? false : 'signup')}}">Signup</button></li>
-    <li class="nav-link"><button class="extended-nav-btn">Login</button></li>
+    <li class="nav-link"><button class="extended-nav-btn" on:click="{() => {authStateStore.update((v) => v == 'login' ? false : 'login')}}">Login</button></li>
   </ul>
 </nav>
 
