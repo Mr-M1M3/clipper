@@ -6,9 +6,9 @@
 
 // modules
 const mongoose = require('mongoose');
-const JSON_SCHEMA = require('../database/models/json-model');
-const USER_SCHEMA = require('../database/models/user-model');
-const TOKEN_SCHEMA = require('../database/models/token-model');
+const JSON_SCHEMA = require('../database/schemas/json-schema');
+const USER_SCHEMA = require('../database/schemas/user-schema');
+const TOKEN_SCHEMA = require('../database/schemas/token-schema');
 const is_valid_json = require('../validators/json-validator');
 const Database = require('../database/database');
 const encrypt = require('../utils/encrypt');
