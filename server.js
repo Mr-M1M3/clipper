@@ -8,6 +8,7 @@
 const express = require('express');
 const CONFIG = require('./private/config/config');
 const user = require('./private/routers/user');
+const json = require('./private/routers/json');
 const cookie_parser = require('cookie-parser');
 
 // handling exception that might happen
@@ -28,6 +29,7 @@ server.use(cookie_parser());
 
 // routes
 server.use('/user', user);
+server.use('/json', json);
 
 // 404 handler
 server.use((req, res, next) => {

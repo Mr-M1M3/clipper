@@ -7,8 +7,9 @@
 // modules
 const CONFIG = require('../config/config');
 const mongoose = require('mongoose');
-const USER_MODEL = require('../database/models/user-model');
-const TOKEN_MODEL = require('../database/models/token-model');
+const USER_SCHEMA = require('../database/models/user-model');
+const TOKEN_SCHEMA = require('../database/models/token-model');
+const JSON_SCHEMA = require('../database/models/json-model');
 const is_valid_password = require('../validators/password-validator');
 const Database = require('../database/database');
 const encrypt = require('../utils/encrypt');
@@ -23,10 +24,12 @@ if (!CONFIG.DATABASE_STRING) {
 const controller = {};
 
 // initializing database
-const database = new Database(CONFIG.DATABASE_STRING, USER_MODEL);
-const token_database = new Database(CONFIG.DATABASE_STRING, TOKEN_MODEL);
+const database = new Database(CONFIG.DATABASE_STRING, USER_SCHEMA, 'User');
+const token_database = new Database(CONFIG.DATABASE_STRING, TOKEN_SCHEMA, 'Token');
+const json_database = new Database(CONFIG.DATABASE_STRING, JSON_SCHEMA, 'JSON');
 token_database.init();
 database.init();
+json_database.init();
 
 // controller for creating user
 controller.create = (req, res, next) => {
@@ -88,6 +91,7 @@ controller.authenticate = (req, res, next) => {
             const RESPONSE = {};
             RESPONSE.name = data[0].name;
             RESPONSE.email = data[0].email;
+            RESPONSE.uid = data[0]._id;
 
             res.cookie('session', TOKEN, {
                 maxAge: CONFIG.SESSION_MAX_AGE,
@@ -188,16 +192,16 @@ controller.delete = (req, res, next) => {
         if (data.length == 0) {
             res.status(401).send('auth failed');
         } else {
-            database.delete({
-                _id: data[0].id
-            }).then(() => {
-                token_database.deleteMany({
-                    id: data[0].id
-                }).then(del_count => {
-                    res.send('deleted');
+            json_database.deleteMany({uid: data[0]._id}).then(json_del_count => {
+                token_database.deleteMany({id: data[0]._id}).then(token_del_count => {
+                    database.delete(data[0].id).then(msg => {
+                        res.send('deleted');
+                    }).catch(error => {
+                        next(error);
+                    })
                 }).catch(error => {
                     next(error);
-                });
+                })
             }).catch(error => {
                 next(error);
             });

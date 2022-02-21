@@ -9,19 +9,22 @@ const mongoose = require('mongoose');
 
 
 class Database {
-    constructor(DATABASE_STRING, MODEL) { // constructs properties to use them later on methods
+    constructor(DATABASE_STRING, SCHEMA, NAME) { // constructs properties to use them later on methods
         this.DATABASE_STRING = DATABASE_STRING;
-        this.MODEL = MODEL;
+        this.SCHEMA = SCHEMA;
+        this.NAME = NAME;
     };
 
     //initialize database
     init() {
+        try{
         const DATABASE_STRING = this.DATABASE_STRING;
-        mongoose.connect(DATABASE_STRING).then(() => {
-            console.log(`Database connection established`);
-        }).catch(error => {
-            console.error(error);
-        })
+        const CONN = mongoose.createConnection(DATABASE_STRING);
+        this.MODEL = CONN.model(this.NAME, this.SCHEMA);
+        console.log(`Database connection established with collection ${this.NAME}`);
+        }catch(error){
+            throw error;
+        }
     }
 
     // writes record database
@@ -30,21 +33,24 @@ class Database {
             try {
                 const doc = new this.MODEL(data);
                 await doc.save();
-                accept('record added'); // which will be resolved if data added successfully
+                accept(doc._id); // which will be resolved if data added successfully
             } catch (error) {
                 reject(error); // and will be rejected if any error occurs
             };
         });
     };
     // get data from database
-    get(filter) {
+    get(filter, opt) {
         const MODEL = this.MODEL; //saves model
+        // overwrites which field should be shown
+        if(typeof opt != 'object'){
+            opt = {};
+        }
+        opt.password = 0;
+        opt.__v = 0;
         return new Promise(async (accept, reject) => { //returns a promise
             try {
-                const docs = await MODEL.find(filter).select({
-                    password: 0,
-                    __v: 0
-                });
+                const docs = await MODEL.find(filter).select(opt);
                 accept(docs); // which resolves on documents found
             } catch (error) {
                 reject(error); // if any error
@@ -52,14 +58,17 @@ class Database {
         });
     };
     // updates data
-    update(filter, data) {
+    update(filter, data, opt) {
         const MODEL = this.MODEL;
+        // overwrites opt
+        if(typeof opt != 'object'){
+            opt = {};
+        }
+        opt.password = 0;
+        opt.__v = 0;
         return new Promise(async (accept, reject) => { //returns a promise
             try {
-                const UPDATE = await MODEL.findByIdAndUpdate(filter, data, {new: true, runValidators: true}).select({
-                    password: 0,
-                    __v: 0
-                });
+                const UPDATE = await MODEL.findByIdAndUpdate(filter, data, {new: true, runValidators: true}).select(opt);
                 accept(UPDATE); //which resolves on updated data
             } catch (error) { // if any error occurs
                 reject(error);

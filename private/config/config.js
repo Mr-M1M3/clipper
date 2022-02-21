@@ -19,6 +19,8 @@ CONFIG.EMAIL_VALIDATOR_REGEXP = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\
 // defines password validation regexp
 CONFIG.PASSWORD_VALIDATOR_REGEXP = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
+CONFIG.NICKNAME_VALIDATOR_REGEXP = /^[a-zA-Z]\w*$/;
+
 // defines validator for names
 CONFIG.NAME_VALIDATOR_REGEXP = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
 
