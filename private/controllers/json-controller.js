@@ -105,7 +105,6 @@ controller.all = (req, res, next) => {
     json_database.get({
         uid: req.params.uid
     }, {
-        _id: 0,
         uid: 0
     }).then(data => {
         res.send(data);

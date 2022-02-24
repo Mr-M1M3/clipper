@@ -18,6 +18,7 @@
     const RESPONSE = await fetcher('post', '/user/register', DATA);
     if(!RESPONSE.ok){
       RESPONSE.text().then(data => {
+        console.log(data)
       if(data == 'invalid data'){
         invalidEmail = invalidName = true;
         fetchState = 'Invalid name or password';
@@ -33,7 +34,6 @@
     });
     }else{
       authStateStore.set('login');
-      alert('Record added');
     }
   }
 </script>

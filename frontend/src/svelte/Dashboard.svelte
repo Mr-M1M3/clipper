@@ -2,15 +2,19 @@
   import "../css/dashboard.css";
   import Nav from "./components/Dashboard_Nav.svelte";
   import Creator from "./components/Creator.svelte";
+  import Home from './components/Home.svelte';
 
   // imports modules
-  import { newJSON } from "./components/modules/stores";
+  import { shouldDisplay } from "./components/modules/stores";
   import fetcher from "./components/modules/fetcher";
+  import {onDestroy} from 'svelte';
 
-  let shouldDisplay = false;
-  newJSON.subscribe((v) => {
-    shouldDisplay = v;
+  let display = false;
+  const unSubscribe = shouldDisplay.subscribe((v) => {
+    display = v;
   });
+
+  onDestroy(unSubscribe);
 
   async function auth() {
     const RESPONSE = await fetcher("POST", "/user/login", {});
@@ -24,6 +28,12 @@
 </script>
 
 <Nav />
-{#if shouldDisplay}
+{#if display == 'creator'}
   <Creator />
+  {:else if display == 'home'}
+  {#await auth()}
+    Loading...
+  {:then user}
+    <Home name={user.name} email={user.email} uid={user.uid}/>
+  {/await}
 {/if}

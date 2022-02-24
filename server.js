@@ -38,8 +38,12 @@ server.use((req, res, next) => {
 
 // handling errors
 server.use((error, req, res, next) => {
-    console.log(error);
-    res.status(500).send('internal server error');
+    if(error.status == 400){
+            res.status(400).send('invalid data');
+    }else{
+        console.log(error);
+        res.status(500).send('internal server error');
+    }
 })
 
 // listens to server

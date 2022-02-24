@@ -1,14 +1,16 @@
 <script>
   // imports module
-  import { newJSON } from "./modules/stores";
+  import { shouldDisplay } from "./modules/stores";
 
-  let activeIndex = 1;
+  let activeIndex = 0;
   function toggleNav(n) {
     activeIndex = n;
-    if(n != 1){
-      newJSON.set(false);
+    if(n == 0){
+      shouldDisplay.set('home');
+    }else if(n == 2){
+      shouldDisplay.set('settings');
     }else{
-      newJSON.set(true);
+      shouldDisplay.set('creator');
     }
   }
 </script>

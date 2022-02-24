@@ -128,6 +128,7 @@ controller.guard = (req, res, next) => {
                         const RESPONSE = {};
                         RESPONSE.name = data[0].name;
                         RESPONSE.email = data[0].email;
+                        RESPONSE.uid = data[0]._id;
                         // sends response
                         res.send(RESPONSE);
                     }).catch(error => {
