@@ -6,6 +6,8 @@
 
   // imports modules
   import fetcher from "./modules/fetcher";
+  import debounce from "./modules/debounce";
+  import { SvelteToast, toast } from "@zerodevx/svelte-toast";
 
   // fetch all json
   let json_arr = [];
@@ -26,6 +28,21 @@
       const RESPONSE = await fetcher("DELETE", `json/delete/${id}`);
       const DATA = await RESPONSE.text();
       delete_status = DATA;
+      if(!RESPONSE.ok){
+        toast.push(delete_status, {
+          theme: {
+            "--toastBackground": "#F56565",
+            "--toastBarBackground": "#C53030",
+          },
+        });
+      }else{
+        toast.push(delete_status, {
+          theme: {
+            "--toastBackground": "#48BB78",
+            "--toastBarBackground": "#2F855A",
+          },
+        });
+      }
       getAllJSON();
     }
 </script>
@@ -58,7 +75,7 @@
       {:else}
       No JSON was Stored Yet...
       {/each}
-      <p class="uppercase text-right">{delete_status}</p>
+      <SvelteToast />
   </table>
 </section>
 

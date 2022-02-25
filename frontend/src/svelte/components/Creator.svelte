@@ -1,7 +1,8 @@
 <script>
   // imports module
   import fetcher from "./modules/fetcher";
-  import debounce from './modules/debounce';
+  import debounce from "./modules/debounce";
+  import { SvelteToast, toast } from "@zerodevx/svelte-toast";
 
   let status = "";
 
@@ -11,20 +12,37 @@
     for (var pair of DATA.entries()) {
       REQ[pair[0]] = pair[1];
     }
-    try{
-    REQ.json = JSON.parse(REQ.json)
-    }catch(error){
+    try {
+      REQ.json = JSON.parse(REQ.json);
+    } catch (error) {
       status = error.message;
     }
     REQ = JSON.stringify(REQ);
-    const RESPONSE = await fetcher("POST", "/json/add", REQ, 'application/json');
+    const RESPONSE = await fetcher(
+      "POST",
+      "/json/add",
+      REQ,
+      "application/json"
+    );
     if (!RESPONSE.ok) {
       RESPONSE.text().then((data) => {
         status = data;
+        toast.push(status, {
+          theme: {
+            "--toastBackground": "#F56565",
+            "--toastBarBackground": "#C53030",
+          },
+        });
       });
     } else {
       RESPONSE.text().then((id) => {
         status = `saved, id: ${id}`;
+        toast.push(status, {
+          theme: {
+            "--toastBackground": "#48BB78",
+            "--toastBarBackground": "#2F855A",
+          },
+        });
       });
     }
   }
@@ -63,7 +81,7 @@
         class="resize-none w-full border-2 px-2 py-3 text-lg outline-none"
       />
       <br />
-      <p>{status}</p>
+      <SvelteToast/>
     </fieldset>
   </form>
 </div>

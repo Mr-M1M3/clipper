@@ -2,7 +2,7 @@
   // imports module
   import { shouldDisplay } from "./modules/stores";
 
-  let activeIndex = 0;
+  let activeIndex = 2;
   function toggleNav(n) {
     activeIndex = n;
     if(n == 0){

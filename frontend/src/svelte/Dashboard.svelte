@@ -3,6 +3,7 @@
   import Nav from "./components/Dashboard_Nav.svelte";
   import Creator from "./components/Creator.svelte";
   import Home from './components/Home.svelte';
+  import Settings from './components/Setting.svelte';
 
   // imports modules
   import { shouldDisplay } from "./components/modules/stores";
@@ -35,5 +36,12 @@
     Loading...
   {:then user}
     <Home name={user.name} email={user.email} uid={user.uid}/>
+  {/await}
+  {:else if display == 'settings'}
+
+  {#await auth()}
+    Loading...
+  {:then user}
+    <Settings name={user.name} email={user.email} uid={user.uid}/>
   {/await}
 {/if}
