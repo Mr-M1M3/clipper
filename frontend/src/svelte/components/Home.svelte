@@ -75,7 +75,9 @@
       {:else}
       No JSON was Stored Yet...
       {/each}
-      <SvelteToast />
+    <div class="toast-wrapper">
+      <SvelteToast/>
+      </div>
   </table>
 </section>
 
@@ -101,4 +103,7 @@
       }
     }
   }
+  .toast-wrapper{
+    text-transform: capitalize;
+}
 </style>

@@ -81,10 +81,12 @@
         class="resize-none w-full border-2 px-2 py-3 text-lg outline-none"
       />
       <br />
-      <SvelteToast/>
     </fieldset>
   </form>
 </div>
+<div class="toast-wrapper">
+  <SvelteToast/>
+  </div>
 
 <style lang="scss">
   .modal {
@@ -102,4 +104,7 @@
       }
     }
   }
+  .toast-wrapper{
+    text-transform: capitalize;
+}
 </style>
